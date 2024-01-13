@@ -1,4 +1,6 @@
 # SmolURL
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/bezrazli4n0/smolurl/ci.yml)
+
 Allows you to create short URL's and track the dynamics of redirects(clicks).
 
 ## Private Key Generation
