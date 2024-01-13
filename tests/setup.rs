@@ -38,16 +38,6 @@ pub async fn init() -> (
     .await
     .expect("Unexpected - can't create users table in test db");
 
-    sqlx::query("DELETE FROM links")
-        .execute(&db_pool)
-        .await
-        .expect("Unexpected - can't delete all from links table in test db");
-
-    sqlx::query("DELETE FROM users")
-        .execute(&db_pool)
-        .await
-        .expect("Unexpected - can't delete all from users table in test db");
-
     sqlx::query(
         r#"
         CREATE TABLE IF NOT EXISTS links (
@@ -62,6 +52,16 @@ pub async fn init() -> (
     .execute(&db_pool)
     .await
     .expect("Unexpected - can't create links table in test db");
+
+    sqlx::query("DELETE FROM links")
+        .execute(&db_pool)
+        .await
+        .expect("Unexpected - can't delete all from links table in test db");
+
+    sqlx::query("DELETE FROM users")
+        .execute(&db_pool)
+        .await
+        .expect("Unexpected - can't delete all from users table in test db");
 
     let test_app_state = state::App {
         keypair: RS384KeyPair::generate(2048).expect("Unexpected - can't generate private key"),
